@@ -96,6 +96,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  if( HAL_GPIO_ReadPin(BUTTON_GPIO_Port, BUTTON_Pin) == GPIO_PIN_SET ) HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_SET);
+	  else HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, GPIO_PIN_RESET);
 
     /* USER CODE BEGIN 3 */
   }
