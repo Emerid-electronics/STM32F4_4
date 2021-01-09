@@ -179,7 +179,7 @@ static void MX_GPIO_Init(void)
 /* USER CODE BEGIN 4 */
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin){
-	HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, HAL_GPIO_ReadPin(BUTTON_EXTI_GPIO_Port, BUTTON_EXTI_Pin));
+	if(GPIO_Pin == BUTTON_EXTI_Pin) HAL_GPIO_WritePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin, HAL_GPIO_ReadPin(BUTTON_EXTI_GPIO_Port, BUTTON_EXTI_Pin));
 }
 
 /* USER CODE END 4 */
