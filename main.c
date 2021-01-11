@@ -50,6 +50,7 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -176,7 +177,30 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	static uint8_t counter = 0;
+	if(GPIO_Pin == BUTTON_EXTI_Pin){
+		counter = (counter + 1) % 4;
+		switch(counter){
+			case 0: HAL_GPIO_TogglePin(LED_BLUE_GPIO_Port, LED_BLUE_Pin);
+				break;
 
+			case 1:
+				HAL_GPIO_TogglePin(LED_GREEN_GPIO_Port, LED_GREEN_Pin);
+				break;
+
+			case 2:
+				HAL_GPIO_TogglePin(LED_ORANGE_GPIO_Port, LED_ORANGE_Pin);
+				break;
+
+			case 3:
+				HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+				break;
+
+		}
+	}
+}
 /* USER CODE END 4 */
 
 /**
